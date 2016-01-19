@@ -8,5 +8,7 @@ describe DockingStation do
   end
 
   it { is_expected. to respond_to :dock_bike }
-
+  it 'dock_bike increase no_people by one' do
+    expect(subject.dock_bike).to change{no_bikes+1}.by(1)
+  end
 end
