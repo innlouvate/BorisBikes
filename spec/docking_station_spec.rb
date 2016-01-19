@@ -8,9 +8,5 @@ describe DockingStation do
   end
 
   it { is_expected. to respond_to :dock_bike }
-  it 'docks bike' do
 
-    expect(subject).to be_an_instance_of <Bike>
-    
-  end
 end
