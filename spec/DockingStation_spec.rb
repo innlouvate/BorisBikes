@@ -27,21 +27,21 @@ describe DockingStation do
 
 		describe "#dock_bike" do
 			bike = Bike.new #basically the same as if we ran release bike first
-
-			it 'returns docked bikes' do
-	    	subject.dock(bike)
-				expect(subject.bike).to eq bike
+			it 'returns docked bike' do
+	    		# subject.dock(bike)
+				expect(subject.dock(bike)).to eq bike
 			end
 
 			it 'should raise error if dock is full' do
-				subject.dock(bike)
-				bike2 = Bike.new
-				expect { subject.dock(bike2) }.to raise_error "Dock Full"
+				20.times do 
+					 subject.dock(bike)
+				end
+				expect { subject.dock(bike) }.to raise_error "Dock Full"
 			end
 
 		end
 
-		it { is_expected.to respond_to(:bike)}
+		it { is_expected.to respond_to(:bikes)}
 
 		it { is_expected.to respond_to(:dock).with(1).argument }
 
