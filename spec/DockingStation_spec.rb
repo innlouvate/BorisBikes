@@ -2,7 +2,7 @@ require 'DockingStation'
 
 describe DockingStation do
 	subject(:DockingStation) {described_class.new}
-  	
+
   	it { is_expected.to respond_to :release_bike }
 
   	it 'expects bike to be working in release_bike' do
@@ -10,10 +10,12 @@ describe DockingStation do
   	end
 
   	it 'returns docked bikes' do
-  		bike = Bike.new
-  		subject.dock(bike)
-  		expect(subject.bike).to eq bike
-  	end
+			bike = Bike.new #basically the same as if we ran release bike first
+			subject.dock(bike)
+			expect(subject.bike).to eq bike
+		end
+
+		it { is_expected.to respond_to(:bike)}
 
   	it { is_expected.to respond_to(:dock).with(1).argument }
 end
