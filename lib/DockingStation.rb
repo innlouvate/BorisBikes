@@ -2,12 +2,12 @@ require_relative 'Bike.rb'
 
 class DockingStation
 
-	attr_accessor :bikes
+	attr_accessor :bikes, :capacity
+	DEFAULT_CAPACITY = 20
 
-	DEFAULT_CAPACITY=20
-
-	def initialize
-	   @bikes = []
+	def initialize(capacity = DEFAULT_CAPACITY)
+		@capacity = capacity
+	  @bikes = []
 	end
 
 	def release_bike
@@ -24,7 +24,7 @@ class DockingStation
 	private
 
 	def full?
-		@bikes.length >= DEFAULT_CAPACITY
+		@bikes.length >= capacity
 	end
 
 	def empty?
@@ -35,29 +35,3 @@ class DockingStation
 	# 	@bikes_in_dock
 	# end
 end
-
-# station = DockingStation.new
-
-# bike1 = station.release_bike
-
-# station.dock(bike1)
-
-# bike2 = station.release_bike
-
-# station.dock(bike2)
-
-# puts station.view_dock
-
-# bike3 = station.release_bike
-
-# station.dock(bike3)
-
-# bike4 = station.release_bike
-
-# station.dock(bike4)
-
-# puts
-
-# puts
-
-# puts station.view_dock
