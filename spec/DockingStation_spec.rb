@@ -5,7 +5,12 @@ describe DockingStation do
 	DEFAULT_CAPACITY = 20
   	it { is_expected.to respond_to :release_bike }
 
-
+  		describe "#intitalize" do
+  			station = DockingStation.new
+  			it "Initialize should set default capacity 20" do  
+  				expect(station.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  			end
+  		end
 
 		describe "#release_bike" do
 			it "releases a bike" do
@@ -33,13 +38,14 @@ describe DockingStation do
 			end
 
 			it 'should raise error if dock is full' do
-				DEFAULT_CAPACITY.times do
+				subject.capacity.times do
 					 subject.dock(bike)
 				end
 				expect { subject.dock(bike) }.to raise_error "Dock Full"
 			end
-
 		end
+
+
 
 		it { is_expected.to respond_to(:bikes)}
 
