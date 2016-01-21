@@ -8,6 +8,7 @@ describe DockingStation do
 
 		describe '#release_bike' do
 			it 'releases a bike' do
+				allow(bike).to receive(:working?).and_return(true)
 				subject.dock(bike)
 	  		expect(subject.release_bike).to eq bike
 	  	end
@@ -15,7 +16,7 @@ describe DockingStation do
 
 		describe '#release_bike' do
 			it 'expects release_bike to raise an error' do
-				allow(:bike).to receive(:working).and_return(true)
+				allow(bike).to receive(:working?).and_return(true)
 	  		expect{ subject.release_bike }.to raise_error("There are no bikes in the dock")
 	  	end
 		end
@@ -45,15 +46,11 @@ describe DockingStation do
 		end
 
 		#marked/reports bike as not working
-		describe '#dock' do
-			it 'reports bike as not working when you dock it' do
-				allow(:bike).to receive(:working)
-				expect{subject.dock(bike, false)}.to change{ bike.working? }.from(true).to(false)
-			end
-		end
+
 
 		describe '#dock' do
 			it 'expects any bike to be docked, broken or not' do
+				allow(bike).to receive(:toggle_working)
 				subject.dock(bike)
 				subject.dock(bike, false)
 				expect(subject.bikes.length).to eq 2
@@ -62,8 +59,7 @@ describe DockingStation do
 
 		describe '#release_bike' do
 			it "releases working bikes only" do
-				allow(bike).to receive(:working).and_return(true)
-				allow(bike).to receive(:toggle_working)
+				allow(bike).to receive(:working?).and_return(true)
 				subject.dock(bike)
 				#subject.dock(bike, false)
 				released_bike = subject.release_bike
