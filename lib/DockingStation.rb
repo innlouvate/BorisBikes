@@ -15,10 +15,15 @@ class DockingStation
 		@bikes.pop
 	end
 
-	def dock(bike)
-		raise "The dock is full" if full?
-		@bikes << bike
-		#@bikes_in_dock += 1
+	def dock(bike, status = true)
+		if status == true
+			raise "The dock is full" if full?
+			@bikes << bike
+			#@bikes_in_dock += 1
+		elsif status == false
+			bike.toggle_working
+		end
+
 	end
 
 	private

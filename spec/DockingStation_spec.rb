@@ -34,7 +34,8 @@ describe DockingStation do
       end
     end
 
-  	it { is_expected.to respond_to(:dock).with(1).argument }
+  	it { is_expected.to respond_to(:dock).with(2).argument }
+
 		it 'has a default capacity' do
 			expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
 		end
@@ -45,5 +46,15 @@ describe DockingStation do
 				expect{ subject.dock(Bike.new) }.to raise_error("The dock is full")
 			end
 		end
+
+		#marked/reports bike as not working
+		describe '#dock' do
+			it 'reports bike as not working' do
+				bike = Bike.new
+				expect{subject.dock(bike, false)}.to change{ bike.working? }.from(true).to(false)
+			end
+		end
+
+		#
 
 end
