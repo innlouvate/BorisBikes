@@ -2,7 +2,7 @@ require 'DockingStation'
 require 'bike'
 describe DockingStation do
 	subject(:DockingStation) {described_class.new}
-	DEFAULT_CAPACITY = 20
+#	DEFAULT_CAPACITY = 20
   	it { is_expected.to respond_to :release_bike }
 
   		describe "#intitalize" do
@@ -21,13 +21,17 @@ describe DockingStation do
 
 			it 'expects bike to be working in release_bike' do
 				bike = Bike.new
-<<<<<<< HEAD
 				expect(bike.broken?).to be nil
-=======
-				expect(bike.broken?).to eq nil
->>>>>>> 1324f873d56313beb6514de8c39d276c3a86d98a
+			end
+
+			it "Does not release the bike if the bike is broken" do
+				bike = Bike.new
+				bike.report_broken
+				subject.dock(bike)
+				expect{subject.release_bike}.to raise_error "Bike is broken!"
 			end
 		end
+
 		describe "release bike failure" do
 				it "Should raise error if bikes not available" do
 					expect { subject.release_bike }.to raise_error "No Bike Error"
@@ -48,8 +52,6 @@ describe DockingStation do
 				expect { subject.dock(bike) }.to raise_error "Dock Full"
 			end
 		end
-
-
 
 		it { is_expected.to respond_to(:bikes)}
 

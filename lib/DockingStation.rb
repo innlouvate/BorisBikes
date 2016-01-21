@@ -14,13 +14,14 @@ class DockingStation
 
 	def release_bike
 		fail "No Bike Error" if empty?
-		@bikes.pop
-		@bike
+		bike = @bikes.pop
+		fail "Bike is broken!" if bike.broken?
+		@bike = bike
 	end
 
 	def dock(bike)
 		raise "Dock Full" if full?
-		@bike = bike
+	  @bike = bike
 		@bikes << bike
 		@bike
 	end
