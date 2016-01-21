@@ -1,4 +1,4 @@
-require_relative 'Bike.rb'
+require_relative 'bike.rb'
 
 class DockingStation
 
@@ -12,7 +12,7 @@ class DockingStation
 	end
 
 	def release_bike
-		raise "There are no bikes in the dock" if empty?
+		raise "There are no bikes available" if empty?
 		released_bike = @bikes.pop
 		if released_bike.working?
 			released_bike
@@ -22,9 +22,8 @@ class DockingStation
 		end
 	end
 
-	def dock(bike, status = true)
+	def dock(bike)
 		raise "The dock is full" if full?
-		bike.toggle_working if status == false
 		@bikes << bike
 	end
 
