@@ -1,5 +1,5 @@
 require 'DockingStation'
-
+require 'bike'
 describe DockingStation do
 	subject(:DockingStation) {described_class.new}
 	DEFAULT_CAPACITY = 20
@@ -7,7 +7,7 @@ describe DockingStation do
 
   		describe "#intitalize" do
   			station = DockingStation.new
-  			it "Initialize should set default capacity 20" do  
+  			it "Initialize should set default capacity 20" do
   				expect(station.capacity).to eq DockingStation::DEFAULT_CAPACITY
   			end
   		end
@@ -21,7 +21,7 @@ describe DockingStation do
 
 			it 'expects bike to be working in release_bike' do
 				bike = Bike.new
-				expect(bike.working?).to be true
+				expect(bike.broken?).to eq nil
 			end
 		end
 		describe "release bike failure" do
