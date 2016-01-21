@@ -1,4 +1,4 @@
-require_relative 'DockingStation.rb'
+require_relative 'docking_station.rb'
 
 class Bike
 
