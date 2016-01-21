@@ -7,7 +7,7 @@ describe Bike do
 	describe '#working?' do
 		it 'toggle changes working status' do
 			bike = Bike.new
-			bike.toggle_working
+			bike.broken
 			expect(bike).to_not be_working
 		end
 	end

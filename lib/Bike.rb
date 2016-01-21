@@ -10,8 +10,8 @@ class Bike
 		@working
 	end
 
-	def toggle_working
-		@working ? @working = false : @working = true
+	def broken
+		@working = false
 	end
 
 
