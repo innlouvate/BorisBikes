@@ -1,7 +1,6 @@
 require_relative 'DockingStation.rb'
 
 class Bike
-attr_accessor :working
 
 	def initialize
 		@working = true

@@ -49,12 +49,27 @@ describe DockingStation do
 
 		#marked/reports bike as not working
 		describe '#dock' do
-			it 'reports bike as not working' do
+			it 'reports bike as not working when you dock it' do
 				bike = Bike.new
 				expect{subject.dock(bike, false)}.to change{ bike.working? }.from(true).to(false)
 			end
 		end
 
-		#
+		describe '#dock' do
+			it 'expects any bike to be docked, broken or not' do
+				subject.dock(Bike.new)
+				subject.dock(Bike.new, false)
+				expect(subject.bikes.length).to eq 2
+			end
+		end
+
+		describe '#release_bike' do
+			it "releases working bikes only" do
+				subject.dock(Bike.new)
+				subject.dock(Bike.new, false)
+				bike = subject.release_bike
+				expect(bike).to be_working
+			end
+		end
 
 end
