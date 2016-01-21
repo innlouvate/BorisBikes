@@ -1,5 +1,5 @@
 require 'DockingStation'
-
+require 'bike'
 describe DockingStation do
 	subject(:DockingStation) {described_class.new}
 	DEFAULT_CAPACITY = 20
@@ -21,7 +21,11 @@ describe DockingStation do
 
 			it 'expects bike to be working in release_bike' do
 				bike = Bike.new
+<<<<<<< HEAD
 				expect(bike.broken?).to be nil
+=======
+				expect(bike.broken?).to eq nil
+>>>>>>> 1324f873d56313beb6514de8c39d276c3a86d98a
 			end
 		end
 		describe "release bike failure" do
