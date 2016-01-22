@@ -5,7 +5,7 @@ describe DockingStation do
 #	DEFAULT_CAPACITY = 20
   	it { is_expected.to respond_to :release_bike }
 
-  		describe "#intitalize" do
+  		describe "#Initialize" do
   			station = DockingStation.new
   			it "Initialize should set default capacity 20" do
   				expect(station.capacity).to eq DockingStation::DEFAULT_CAPACITY
@@ -38,7 +38,7 @@ describe DockingStation do
 				# allow(docking_station).to receive(:release_bike).and_return{ fail "Bike is broken!" }
 				# allow(docking_station).to receive(:dock).and_return(bike)
 				subject.dock(bike)
-				expect{subject.release_bike}.to raise_error "Bike is broken!"
+				expect{subject.release_bike}.to raise_error "Bike is broken!"			
 			end
 
 		end
@@ -75,7 +75,7 @@ describe DockingStation do
 			end
 		end
 
-		it { is_expected.to respond_to(:bikes)}
+		it { is_expected.to respond_to(:bike_rack)}
 
 		it { is_expected.to respond_to(:dock).with(1).argument }
 
